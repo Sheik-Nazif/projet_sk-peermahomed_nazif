@@ -218,7 +218,7 @@ mvn spring-boot:run
 
 ---
 
-# 6) Endpoints REST (exemple)
+# 6) Endpoints REST (exemple - non exhaustif)
 
 * `GET /clients`
 * `POST /clients`
