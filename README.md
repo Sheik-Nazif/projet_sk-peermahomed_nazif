@@ -39,8 +39,8 @@ Le projet SimpleCash permet de gérer :
 Ce projet correspond au système d’information **SimpleCashSI**.
 
 ---
-
-# 📚 1) Architecture du projet (UML)
+````
+# 1) Architecture du projet (UML)
 
 Architecture en couches :
 
@@ -83,7 +83,7 @@ classDiagram
     controller --> service : "appelle"
     service --> repository : "utilise"
     repository --> entity : "manipule"
-````
+```
 
 ---
 
@@ -186,10 +186,28 @@ cd projet_sk-peermahomed_nazif
 ### 2. Configurer la base de données (`src/main/resources/application.properties`)
 
 ```properties
-spring.datasource.url=jdbc:mysql://localhost:3306/simplecash
-spring.datasource.username=root
-spring.datasource.password=****
+spring.application.name=projet_sk-peermahomed_nazif
+
+# Swagger / OpenAPI configuration (springdoc)
+# UI: http://localhost:8080/swagger-ui/index.html
+springdoc.api-docs.path=/v3/api-docs
+springdoc.swagger-ui.path=/swagger-ui
+springdoc.swagger-ui.operationsSorter=alpha
+springdoc.swagger-ui.tagsSorter=alpha
+
+spring.datasource.url=jdbc:h2:mem:testdb
+spring.datasource.driverClassName=org.h2.Driver
+spring.datasource.username=sa
+spring.datasource.password=
+
+# Créer le schéma depuis les entités JPA
 spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=true
+spring.jpa.properties.hibernate.format_sql=true
+
+# Activer la console H2
+spring.h2.console.enabled=true
+spring.h2.console.path=/h2-console
 ```
 
 ### 3. Lancer le projet
