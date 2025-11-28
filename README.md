@@ -134,29 +134,29 @@ classDiagram
 
 ## Gestion des clients
 
-* **US1** – En tant que conseiller, je veux créer un client afin de l’ajouter dans mon portefeuille.
-* **US2** – En tant que conseiller, je veux consulter les informations d’un client afin de visualiser son profil.
-* **US3** – En tant que conseiller, je veux modifier un client afin de mettre à jour ses données.
-* **US4** – En tant que conseiller, je veux supprimer un client afin de retirer son dossier (et ses comptes associés).
+* ✔ **US1** – En tant que conseiller, je veux créer un client afin de l’ajouter dans mon portefeuille.
+* ✔ **US2** – En tant que conseiller, je veux consulter les informations d’un client afin de visualiser son profil.
+* ✔ **US3** – En tant que conseiller, je veux modifier un client afin de mettre à jour ses données.
+* ~✔ **US4** – En tant que conseiller, je veux supprimer un client afin de retirer son dossier (et ses comptes associés).
 
 ## Gestion des comptes
 
-* **US5** – Je veux créer un compte courant pour un client.
-* **US6** – Je veux créer un compte épargne pour un client.
-* **US7** – Je veux créditer/débiter un compte.
+* ✔ **US5** – Je veux créer un compte courant pour un client.
+* ✔ **US6** – Je veux créer un compte épargne pour un client.
+* ✔ **US7** – Je veux créditer/débiter un compte.
 
 ## Virements
 
-* **US8** – Je veux effectuer un virement entre deux comptes de la banque (action loggée via AOP).
+* ✔ **US8** – Je veux effectuer un virement entre deux comptes de la banque (action loggée via AOP).
 
-## 📊 Audit
+## Audit
 
-* **US9** – En tant qu’auditeur, je veux générer un rapport des comptes créditeurs/débiteurs.
+* ✔ **US9** – En tant qu’auditeur, je veux générer un rapport des comptes créditeurs/débiteurs.
 
 ## Conseillers & agences
 
-* **US10** – En tant que gérant, je veux assigner un client à un conseiller.
-* **US11** – En tant que direction, je veux assigner un gérant à une agence.
+* ✔ **US10** – En tant que gérant, je veux assigner un client à un conseiller.
+* x **US11** – En tant que direction, je veux assigner un gérant à une agence.
 
 ---
 
