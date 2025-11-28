@@ -11,6 +11,15 @@
  - Logging AOP
  - Auteur
 
+ ## Swagger / OpenAPI
+
+ La documentation interactive de l'API est disponible via Swagger UI.
+
+ - UI: `http://localhost:8080/swagger-ui` (ou `http://localhost:8080/swagger-ui/index.html`)
+ - Spécification OpenAPI (JSON): `http://localhost:8080/v3/api-docs`
+
+ Les endpoints sont annotés avec des `@Tag` et `@Operation` pour fournir des titres et descriptions claires.
+
 ---
 
 # **README.md — VERSION FINALE (COMPLÈTE)**
