@@ -2,12 +2,43 @@
 
 # UML – Architecture du projet SimpleCash
 
-Ce diagramme représente l’architecture en couches du projet Spring Boot :  
+ - Architecture UML
+ - Diagramme métier
+ - User stories
+ - Installation
+ - Tech stack
+ - Endpoints
+ - Logging AOP
+ - Auteur
+
+---
+
+# **README.md — VERSION FINALE (COMPLÈTE)**
+
+````markdown
+# Projet SimpleCash – SK-PeerMahomed Nazif
+Application bancaire pédagogique réalisée avec **Spring Boot 3.5.8**, **Java 21**, **JPA**, et **Maven**.
+
+Le projet SimpleCash permet de gérer :
+- les **clients**
+- les **comptes bancaires**
+- les **conseillers (workers)**
+- les **agences**
+- les **virements**
+- l’**audit des comptes**
+
+Ce projet correspond au système d’information **SimpleCashSI**.
+
+---
+
+# 📚 1) Architecture du projet (UML)
+
+Architecture en couches :
+
 **Controller → Service → Repository → Entity**
 
 ```mermaid
 classDiagram
-    %% PACKAGES
     class controller {
     <<layer>>
     +ClientController
@@ -40,20 +71,15 @@ classDiagram
     +Agence
     }
 
-    %% RELATIONS ENTRE COUCHES
     controller --> service : "appelle"
     service --> repository : "utilise"
     repository --> entity : "manipule"
-```
+````
+
 ---
 
-# **2) Fichier : `uml-domain-model.md`**
+# 2) Modèle UML – Vue métier (classes)
 
-```markdown
-# UML – Vue Simplifiée des Classes Métier
-
-Ce diagramme représente uniquement les **entités métier** et leurs **relations**.
-```
 ```mermaid
 classDiagram
     class Agence {
@@ -87,9 +113,112 @@ classDiagram
         +date_of_creation : date
     }
 
-    %% RELATIONS MÉTIER
     Agence "1" --> "1" Worker : dirige >
     Worker "1" --> "0..10" Client : conseille >
     Client "1" --> "0..1" Account : compte courant >
     Client "1" --> "0..1" Account : compte épargne >
+```
+
+---
+
+# 3) User Stories minimales
+
+## Gestion des clients
+
+* **US1** – En tant que conseiller, je veux créer un client afin de l’ajouter dans mon portefeuille.
+* **US2** – En tant que conseiller, je veux consulter les informations d’un client afin de visualiser son profil.
+* **US3** – En tant que conseiller, je veux modifier un client afin de mettre à jour ses données.
+* **US4** – En tant que conseiller, je veux supprimer un client afin de retirer son dossier (et ses comptes associés).
+
+## Gestion des comptes
+
+* **US5** – Je veux créer un compte courant pour un client.
+* **US6** – Je veux créer un compte épargne pour un client.
+* **US7** – Je veux créditer/débiter un compte.
+
+## Virements
+
+* **US8** – Je veux effectuer un virement entre deux comptes de la banque (action loggée via AOP).
+
+## 📊 Audit
+
+* **US9** – En tant qu’auditeur, je veux générer un rapport des comptes créditeurs/débiteurs.
+
+## Conseillers & agences
+
+* **US10** – En tant que gérant, je veux assigner un client à un conseiller.
+* **US11** – En tant que direction, je veux assigner un gérant à une agence.
+
+---
+
+# 4) Technologies utilisées
+
+| Composant                       | Version |
+| ------------------------------- | ------- |
+| **Java**                        | 21      |
+| **Spring Boot**                 | 3.5.8   |
+| **Spring Web (REST)**           | ✔       |
+| **Spring Data JPA / Hibernate** | ✔       |
+| **AOP (logging des virements)** | ✔       |
+| **Maven**                       | ✔       |
+| **MySQL / PostgreSQL**          | ✔       |
+
+---
+
+# 5) Installation & exécution
+
+### 1. Cloner le projet
+
+```bash
+git clone https://github.com/<ton-repo>/projet_sk-peermahomed_nazif.git
+cd projet_sk-peermahomed_nazif
+```
+
+### 2. Configurer la base de données (`src/main/resources/application.properties`)
+
+```properties
+spring.datasource.url=jdbc:mysql://localhost:3306/simplecash
+spring.datasource.username=root
+spring.datasource.password=****
+spring.jpa.hibernate.ddl-auto=update
+```
+
+### 3. Lancer le projet
+
+```bash
+mvn spring-boot:run
+```
+
+---
+
+# 6) Endpoints REST (exemple)
+
+* `GET /clients`
+* `POST /clients`
+* `PUT /clients/{id}`
+* `DELETE /clients/{id}`
+* `POST /virements`
+* `GET /audit`
+* `GET /accounts`
+* `GET /workers`
+* `GET /agences`
+
+(La documentation Postman peut être ajoutée ultérieurement.)
+
+---
+
+# 7) Tests unitaires
+
+* JUnit 5
+* Mockito
+* Spring Boot Test
+
+---
+
+# 8) Logging AOP
+
+Toutes les opérations sensibles (comme les virements) sont automatiquement enregistrées dans :
+
+```
+logs/virement.log
 ```
