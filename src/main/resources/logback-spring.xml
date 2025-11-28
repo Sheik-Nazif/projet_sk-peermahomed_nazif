@@ -1,0 +1,27 @@
+<configuration>
+    <!-- Encoder pattern for audit logs -->
+    <property name="AUDIT_PATTERN" value="%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level [%thread] %logger - %msg%n"/>
+
+    <!-- Rolling file appender for transfer audit logs -->
+    <appender name="TRANSFER_AUDIT_APPENDER" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>logs/transfer-audit.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- daily rollover, keep 30 days -->
+            <fileNamePattern>logs/transfer-audit.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>${AUDIT_PATTERN}</pattern>
+        </encoder>
+    </appender>
+
+    <!-- Dedicated logger used by the TransferAuditAspect -->
+    <logger name="TRANSFER_AUDIT" level="INFO" additivity="false">
+        <appender-ref ref="TRANSFER_AUDIT_APPENDER"/>
+    </logger>
+
+    <!-- Root logger unchanged; can be customized if needed -->
+    <root level="INFO">
+        <!-- No reference to the audit appender here to keep it separated -->
+    </root>
+</configuration>
